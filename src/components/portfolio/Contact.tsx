@@ -115,7 +115,7 @@ export const Contact = () => {
       });
       setFormData({ name: '', email: '', message: '', website: '' });
       setLastSubmitTime(now);
-    } catch {
+    } catch (err) {
       try {
         if (import.meta.env.DEV) {
           const fallbackRes = await fetch('/api/send-email', {
@@ -139,7 +139,9 @@ export const Contact = () => {
         } else {
           toast({
             title: t('contact.errorTitle', 'Error'),
-            description: 'Invio email non configurato in produzione. Controlla le variabili EmailJS.',
+            description: typeof err === 'object' && err && 'message' in (err as any)
+              ? (err as any).message
+              : 'Invio email non configurato in produzione. Controlla le variabili EmailJS.',
             variant: 'destructive',
           });
         }

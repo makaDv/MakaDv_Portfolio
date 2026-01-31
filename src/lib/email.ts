@@ -7,7 +7,9 @@ let isInitialized = false;
 export const initEmailJS = () => {
   if (isInitialized) return;
   const publicKey = getEnv("VITE_EMAILJS_PUBLIC_KEY") || getEnv("VITE_EMAILJS_USER_ID");
-  if (!publicKey) throw new Error("EmailJS public key missing");
+  if (!publicKey) {
+    throw new Error("Configurazione EmailJS mancante: VITE_EMAILJS_PUBLIC_KEY (o VITE_EMAILJS_USER_ID)");
+  }
   emailjs.init(publicKey);
   isInitialized = true;
 };
@@ -24,7 +26,13 @@ export const sendPortfolioEmail = async (args: SendArgs) => {
   const serviceId = getEnv("VITE_EMAILJS_SERVICE_ID");
   const templateId = getEnv("VITE_EMAILJS_TEMPLATE_ID");
   const toEmail = args.toEmail || getEnv("VITE_EMAILJS_TO_EMAIL");
-  if (!serviceId || !templateId) throw new Error("EmailJS service/template not configured");
+  if (!serviceId || !templateId) {
+    const missing = [
+      !serviceId ? "VITE_EMAILJS_SERVICE_ID" : null,
+      !templateId ? "VITE_EMAILJS_TEMPLATE_ID" : null,
+    ].filter(Boolean).join(", ");
+    throw new Error(`Configurazione EmailJS mancante: ${missing}`);
+  }
   const params: Record<string, string> = {
     name: args.name,
     email: args.email,
