@@ -117,21 +117,29 @@ export const Contact = () => {
       setLastSubmitTime(now);
     } catch {
       try {
-        const fallbackRes = await fetch('/api/send-email', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ name: result.data.name, email: result.data.email, message: result.data.message }),
-        });
-        if (fallbackRes.ok) {
-          toast({
-            title: t('contact.sentTitle', 'Message sent!'),
-            description: t('contact.sentDesc', "Message sent using server fallback. I'll get back to you soon."),
+        if (import.meta.env.DEV) {
+          const fallbackRes = await fetch('/api/send-email', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ name: result.data.name, email: result.data.email, message: result.data.message }),
           });
-          setFormData({ name: '', email: '', message: '' });
+          if (fallbackRes.ok) {
+            toast({
+              title: t('contact.sentTitle', 'Message sent!'),
+              description: t('contact.sentDesc', "Message sent using server fallback. I'll get back to you soon."),
+            });
+            setFormData({ name: '', email: '', message: '' });
+          } else {
+            toast({
+              title: t('contact.errorTitle', 'Error'),
+              description: t('contact.errorDesc', 'Something went wrong. Please try again.'),
+              variant: 'destructive',
+            });
+          }
         } else {
           toast({
             title: t('contact.errorTitle', 'Error'),
-            description: t('contact.errorDesc', 'Something went wrong. Please try again.'),
+            description: 'Invio email non configurato in produzione. Controlla le variabili EmailJS.',
             variant: 'destructive',
           });
         }

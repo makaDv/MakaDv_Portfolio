@@ -1,6 +1,8 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { useI18n } from '../../i18n/i18n';
+import ukFlag from '@/img/Flag_of_the_United_Kingdom_(3-5).svg.png';
+import itFlag from '@/img/Flag_of_Italy.svg.webp';
 
 const LanguageSelector: React.FC = () => {
   const { lang, setLang, t } = useI18n();
@@ -27,7 +29,7 @@ const LanguageSelector: React.FC = () => {
           }`}
         >
           <span className="uppercase">{t('language.en', 'English')}</span>
-          <img src="/src/img/Flag_of_the_United_Kingdom_(3-5).svg.png" alt={t('language.en', 'English')} className="w-5 h-5 rounded-sm" />
+          <img src={ukFlag} alt={t('language.en', 'English')} className="w-5 h-5 rounded-sm" />
         </button>
 
         <button
@@ -39,7 +41,7 @@ const LanguageSelector: React.FC = () => {
           }`}
         >
           <span className="uppercase">{t('language.it', 'Italian')}</span>
-          <img src="/src/img/Flag_of_Italy.svg.webp" alt={t('language.it', 'Italian')} className="w-5 h-5 rounded-sm" />
+          <img src={itFlag} alt={t('language.it', 'Italian')} className="w-5 h-5 rounded-sm" />
         </button>
       </div>
     </div>
