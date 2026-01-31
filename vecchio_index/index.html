@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portfolio | Full-Stack Developer & UI/UX Designer</title>
+    <meta name="description" content="Professional portfolio showcasing full-stack development and UI/UX design work. Crafting digital experiences with cutting-edge technology and elegant design." />
+    <meta name="author" content="Your Name" />
+    <meta name="keywords" content="developer, portfolio, full-stack, UI/UX, React, TypeScript, web development" />
+    <meta name="theme-color" content="#0a0e1a" />
+    <link rel="canonical" href="/" />
+
+    <meta property="og:title" content="Portfolio | Full-Stack Developer & UI/UX Designer" />
+    <meta property="og:description" content="Professional portfolio showcasing full-stack development and UI/UX design work." />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@yourhandle" />
+    <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+  </head>
+
+  <body>
+    <div id="root"></div>
+    <script>
+      (function () {
+        var port = window.location.port;
+        if (port === "8080") {
+          var s = document.createElement("script");
+          s.type = "module";
+          s.src = "/src/main.tsx";
+          document.body.appendChild(s);
+        } else {
+          try {
+            fetch("dist/index.html", { method: "HEAD" }).then(function (r) {
+              if (r.ok) location.href = "dist/";
+            }).catch(function(){});
+          } catch (e) {}
+        }
+      })();
+    </script>
+  </body>
+</html>

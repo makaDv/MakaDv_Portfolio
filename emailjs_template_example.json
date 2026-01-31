@@ -1,0 +1,11 @@
+{
+  "name": "Contact Form Template",
+  "template_id": "YOUR_TEMPLATE_ID",
+  "from_name": "{{name}}",
+  "subject": "New message from {{name}}",
+  "html": "<p>You received a new message from {{name}} ({{email}})</p>\n<p><strong>Message:</strong></p>\n<p>{{message}}</p>\n",
+  "text": "You received a new message from {{name}} ({{email}})\n\nMessage:\n{{message}}",
+  "default_subject": "New message from {{name}}",
+  "variables": ["name", "email", "message", "to_email", "subject"],
+  "description": "Template used by the contact form. If your plan doesn't allow dynamic recipient override, set the recipient directly in the template settings to dvdavide07@gmail.com."
+}
