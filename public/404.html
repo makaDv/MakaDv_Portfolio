@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="it">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pagina non trovata — MakaDv Portfolio</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+      :root {
+        --background: 222 47% 5%;
+        --foreground: 210 40% 98%;
+        --card: 222 47% 8%;
+        --card-foreground: 210 40% 98%;
+        --primary: 185 100% 50%;
+        --secondary: 262 83% 58%;
+        --muted: 222 30% 12%;
+        --border: 222 30% 18%;
+        --radius: 0.75rem;
+      }
+      * { box-sizing: border-box; }
+      html, body {
+        height: 100%;
+      }
+      body {
+        margin: 0;
+        font-family: 'Space Grotesk', system-ui, sans-serif;
+        background: hsl(var(--background));
+        color: hsl(var(--foreground));
+      }
+      .container {
+        min-height: 100%;
+        display: grid;
+        place-items: center;
+        padding: 2rem;
+        background:
+          radial-gradient(ellipse 80% 50% at 50% -20%, hsl(var(--primary) / 0.15), transparent),
+          linear-gradient(180deg, hsl(222 47% 8%), hsl(222 47% 5%));
+      }
+      .card {
+        max-width: 720px;
+        width: 100%;
+        background: linear-gradient(135deg, hsl(var(--card) / 0.8), hsl(var(--card) / 0.4));
+        backdrop-filter: blur(20px);
+        border: 1px solid hsl(var(--border) / 0.5);
+        border-radius: var(--radius);
+        padding: 2rem;
+        box-shadow: 0 0 20px hsl(var(--primary) / 0.15);
+        text-align: center;
+      }
+      h1 {
+        margin: 0 0 0.5rem 0;
+        font-size: 2.25rem;
+        background: linear-gradient(135deg, hsl(185 100% 50%), hsl(262 83% 58%));
+        -webkit-background-clip: text;
+        background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      p {
+        margin: 0.5rem 0 1.5rem 0;
+        color: hsl(215 20% 75%);
+      }
+      .actions {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.75rem 1rem;
+        border-radius: calc(var(--radius) - 2px);
+        border: 1px solid hsl(var(--border));
+        text-decoration: none;
+        font-weight: 600;
+        transition: all 0.2s ease;
+      }
+      .btn-primary {
+        background: hsl(var(--primary));
+        color: hsl(var(--background));
+        box-shadow: 0 0 20px hsl(var(--primary) / 0.3), 0 0 40px hsl(var(--primary) / 0.1);
+      }
+      .btn-primary:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 0 30px hsl(var(--primary) / 0.5), 0 0 60px hsl(var(--primary) / 0.2);
+      }
+      .btn-muted {
+        background: hsl(var(--muted));
+        color: hsl(var(--foreground));
+      }
+      .btn-muted:hover {
+        border-color: hsl(var(--primary));
+      }
+      .hint {
+        margin-top: 1.25rem;
+        font-size: 0.875rem;
+        color: hsl(215 20% 65%);
+      }
+    </style>
+    <script>
+      (function() {
+        try {
+          var segments = location.pathname.split("/").filter(Boolean);
+          if (segments.length > 0 && segments[segments.length - 1] !== "404.html") {
+            var repo = segments[0] || "";
+            var rest = segments.slice(1).join("/");
+            if (repo && rest) {
+              var target = "/" + repo + "/#/" + rest + location.search + location.hash;
+              if (location.pathname !== "/" + repo + "/") {
+                location.replace(target);
+              }
+            }
+          }
+        } catch (e) { /* ignore */ }
+      })();
+    </script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="card">
+        <h1>404 — Pagina non trovata</h1>
+        <p>Sembra che l’indirizzo non esista. Puoi tornare alla home o continuare la navigazione.</p>
+        <div class="actions">
+          <a class="btn btn-primary" href="./#/">
+            Torna alla Home
+          </a>
+          <a class="btn btn-muted" href="./">
+            Ricarica
+          </a>
+        </div>
+        <div class="hint">
+          Se sei arrivato qui da un link “profondo”, verrai reindirizzato automaticamente alla versione corretta con <strong>#</strong>.
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
